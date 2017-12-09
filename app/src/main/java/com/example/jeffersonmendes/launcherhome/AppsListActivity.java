@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +21,10 @@ import java.util.List;
  */
 
 public class AppsListActivity extends Activity {
+    private PackageManager manager;
+    private List<AppDetail> apps;
+    private GridView grid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +34,6 @@ public class AppsListActivity extends Activity {
         addClickListener();
     }
 
-    private PackageManager manager;
-    private List<AppDetail> apps;
     private void loadApps(){
         manager = getPackageManager();
         apps = new ArrayList<AppDetail>();
@@ -48,10 +50,9 @@ public class AppsListActivity extends Activity {
             apps.add(app);
         }
     }
-/*teste*/
-    private ListView list;
+
     private void loadListView(){
-        list = findViewById(R.id.apps_list);
+        grid = findViewById(R.id.apps_grid);
 
         ArrayAdapter<AppDetail> adapter = new ArrayAdapter<AppDetail>(this,
                 R.layout.list_item,
@@ -68,18 +69,18 @@ public class AppsListActivity extends Activity {
                 TextView appLabel = convertView.findViewById(R.id.item_app_label);
                 appLabel.setText(apps.get(position).label);
 
-                TextView appName = convertView.findViewById(R.id.item_app_name);
-                appName.setText(apps.get(position).name);
+                /*TextView appName = convertView.findViewById(R.id.item_app_name);
+                appName.setText(apps.get(position).name);*/
 
                 return convertView;
             }
         };
 
-        list.setAdapter(adapter);
+        grid.setAdapter(adapter);
     }
 
    private void addClickListener(){
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = manager.getLaunchIntentForPackage(apps.get(position).name.toString());

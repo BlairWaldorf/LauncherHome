@@ -12,9 +12,9 @@
         <activity
             android:name="com.example.jeffersonmendes.launcherhome.HomeActivity"
             android:label="Simple Launcher Home"
-            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"
             android:launchMode="singleTask"
             android:stateNotNeeded="true"
+            android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,4 +26,10 @@
             android:name="com.example.jeffersonmendes.launcherhome.AppsListActivity"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
-</manifest>
+</manifest><!-- Declaração de Duas Activities para exibição do "HOME" e "DRAWER"-->
+
+    <!-- As TAGS HOME e DEFAULT fazem a activity se comportar como launcher;
+         É importante declarar a singletask no launchMode para evitar que varias instancias
+         da activity sejam executadas
+
+          -->

@@ -11,3 +11,6 @@ public class AppDetail {
     CharSequence name;
     Drawable icon;
 }
+/*Define os dados que serão exibidos no item do drawer:
+Nome, icone e package que nao foi setado no xml-->
+ */
